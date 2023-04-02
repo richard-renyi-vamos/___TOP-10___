@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the complex function f(z) = z^2 + c
+def f(z, c):
+    return z**2 + c
+
+# Define the Julia set function
+def julia_set(c, n=100, thresh=2):
+    # Define the grid of complex numbers
+    x = np.linspace(-2, 2, 500)
+    y = np.linspace(-2, 2, 500)
+    grid = np.meshgrid(x, y)
+    z = grid[0] + 1j * grid[1]
+    
+    # Iterate the function f(z) n times
+    for i in range(n):
+        z = f(z, c)
+        
+    # Create a mask for points that haven't escaped to infinity
+    mask = np.abs(z) < thresh
+    
+    # Plot the Julia set fractal
+    plt.imshow(mask.T, extent=(-2, 2, -2, 2))
+    plt.xlabel("Re(z)")
+    plt.ylabel("Im(z)")
+    plt.show()
+
+# Test the Julia set function with c = -0.8 + 0.156j
+julia_set(-0.8 + 0.156j)
+
+# CREATED WITH THE HELP OF OPEN-AI CHAT GPT: https://chat.openai.com/chat
