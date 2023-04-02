@@ -1,0 +1,8 @@
+import pyttsx3
+
+engine = pyttsx3.init()
+engine.say("Hello, world!")
+engine.runAndWait()
+
+
+# CREATED WITH THE HELP OF OPEN-AI CHAT GPT: https://chat.openai.com/chat
