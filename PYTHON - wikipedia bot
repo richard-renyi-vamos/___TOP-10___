@@ -1,0 +1,36 @@
+import wikipedia
+
+# Define a function to search Wikipedia and return a summary of the top result
+def search_wiki(query):
+    try:
+        search_results = wikipedia.search(query, results=5)
+        return search_results
+    except:
+        return "Sorry, I couldn't find any results for that query."
+
+# Define a function to handle incoming messages
+def handle_message(message):
+    # Call the search_wiki function with the message and get the search results
+    search_results = search_wiki(message)
+    # Print the search results to the console
+    print("Search results:")
+    for i, result in enumerate(search_results):
+        print(f"{i+1}. {result}")
+    # Prompt the user to select a result
+    selection = input("Enter the number of a search result to view a summary: ")
+    try:
+        # Get the summary of the selected result and return it
+        summary = wikipedia.summary(search_results[int(selection)-1])
+        return summary
+    except:
+        return "Sorry, there was an error retrieving the summary. Please try again."
+
+# Set up a loop to keep the chatbot running
+while True:
+    # Get input from the user
+    message = input("> ")
+    # Call the handle_message function with the message and print the result
+    response = handle_message(message)
+    print(response)
+
+# CREATED WITH THE HELP OF OPEN-AI CHAT GPT: https://chat.openai.com/chat
